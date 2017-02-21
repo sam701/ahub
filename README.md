@@ -15,7 +15,8 @@ $GOPATH/bin/ahub
 ```
 
 ## Configure
-Generate a Github access key, as described [here](https://help.github.com/articles/creating-an-access-token-for-command-line-use/)
+Generate a Github access key, as described [here](https://help.github.com/articles/creating-an-access-token-for-command-line-use/),
+make sure it has `Full control of private repositories` permission
 and export it 
 ```sh
 export GITHUB_TOKEN=<token>
