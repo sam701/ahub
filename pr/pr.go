@@ -1,6 +1,7 @@
 package pr
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"strings"
@@ -25,13 +26,13 @@ func List(ctx *cli.Context) error {
 
 func listPRsInTeamsRepos(teamName, org string) {
 	c := client.New()
-	teams, _, err := c.Organizations.ListUserTeams(nil)
+	teams, _, err := c.Organizations.ListUserTeams(context.Background(), nil)
 	if err != nil {
 		log.Fatalln("ERROR", err)
 	}
 	for _, team := range teams {
 		if *team.Name == teamName {
-			repos, _, err := c.Organizations.ListTeamRepos(*team.ID, &github.ListOptions{
+			repos, _, err := c.Organizations.ListTeamRepos(context.Background(), *team.ID, &github.ListOptions{
 				Page:    0,
 				PerPage: 1000,
 			})
@@ -45,7 +46,7 @@ func listPRsInTeamsRepos(teamName, org string) {
 
 func listPRsInWatchedRepos(org string) {
 	c := client.New()
-	repos, _, err := c.Activity.ListWatched("", &github.ListOptions{
+	repos, _, err := c.Activity.ListWatched(context.Background(), "", &github.ListOptions{
 		Page:    0,
 		PerPage: 1000,
 	})
@@ -61,7 +62,7 @@ func scanRepos(repos []*github.Repository, org string, c *github.Client) {
 			fmt.Printf("%-60s %s\n",
 				tcolor.Colorize(*repo.FullName, tcolor.New().Bold().Foreground(tcolor.Green)),
 				*repo.HTMLURL)
-			prs, _, err := c.PullRequests.List(org, *repo.Name, nil)
+			prs, _, err := c.PullRequests.List(context.Background(), org, *repo.Name, nil)
 			if err != nil {
 				log.Fatalln("ERROR", err)
 			}
