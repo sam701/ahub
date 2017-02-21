@@ -2,8 +2,19 @@
 Github goodies
 
 ## Installation
-Install binary `go get -u github.com/sam701/ahub`.
 
+### Install from source
+```sh
+git clone https://github.com/sam701/ahub.git $GOPATH/src/github.com/sam701/ahub
+cd $GOPATH/src/github.com/sam701/ahub
+glide install
+go install
+
+# test it
+$GOPATH/bin/ahub
+```
+
+## Configure
 Generate a Github access key, as described [here](https://help.github.com/articles/creating-an-access-token-for-command-line-use/)
 and export it 
 ```sh
