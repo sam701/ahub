@@ -1,7 +1,7 @@
 # ahub
 Github goodies
 
-## Installation
+## Install
 
 ### Install from source
 ```sh
