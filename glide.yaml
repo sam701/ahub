@@ -1,0 +1,10 @@
+package: github.com/sam701/ahub
+import:
+- package: github.com/google/go-github
+  subpackages:
+  - github
+- package: github.com/sam701/tcolor
+  version: ^0.3.0
+- package: github.com/urfave/cli
+  version: ^1.19.1
+- package: golang.org/x/oauth2
