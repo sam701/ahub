@@ -9,6 +9,7 @@ import (
 
 func main() {
 	app := cli.NewApp()
+	app.Usage = "Github goodies"
 	app.Version = "0.1.0"
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
